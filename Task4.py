@@ -12,14 +12,25 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-telemarkerters = []
+telemarkerters = set()
+receiver_list = set()
 for call in calls:
-	if call[0].find("140") != -1:
-		if call[0].find("140") == 0:
-			telemarkerters.append(call[0])
+    receiver_list.add(call[1])
+
+for call in calls:
+    if call[0] in receiver_list:
+        pass
+    else:
+        telemarkerters.add(call[0])
+
+for text in texts:
+    if text[0] in telemarkerters:
+        telemarkerters.discard(text[0])
+    if text[1] in telemarkerters:
+        telemarkerters.discard(text[1])
 
 print("These numbers could be telemarketers: ")
-for telemarkerter in sorted(set(telemarkerters)):
+for telemarkerter in sorted(telemarkerters):
 	print(telemarkerter)
 
 """
@@ -34,4 +45,3 @@ Print a message:
 <list of numbers>
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
-
