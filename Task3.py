@@ -13,27 +13,31 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
     calls_count = len(calls)
 
-tel_codes = []
 calls_within_blr = 0
-for call in calls:
-	if call[0].find("(") != -1:
-		if call[1].find("(") != -1:
-			tel_codes.append(call[1])
-	if call[0].find("(080") != -1:
-		if call[1].find("(080") != -1:
-			calls_within_blr += 1
+all_calls = 0
+list_of_codes = set();
 
-codes = []
-for tel_code in tel_codes:
-	if tel_code.find(")") != -1:
-		pos = tel_code.find(")")
-		codes.append(tel_code[:pos+1])
+for call in calls:
+    if call[0].find("(080)") != -1 and call[1].find("(080)") != -1:
+        calls_within_blr += 1
+        all_calls += 1
+    elif call[0].find("(080)") != -1 and call[1].find("(") != -1:
+        list_of_codes.add(call[1])
+    elif call[0].find("(080)") != -1 and ( call[1][0] == "9" or call[1][0] == "8" or call[1][0] == "7" ):
+        list_of_codes.add(call[1])
+        all_calls += 1
+    else:
+        all_calls += 1
 
 print("The numbers called by people in Bangalore have codes:")
-for code in sorted(set(codes)):
-	print(code.replace("(", "").replace(")", ""))
+for code in sorted(list_of_codes):
+    if(code.find(")") != -1):
+        pos = code.find(")")
+        print(code[:pos+1])
+    else:
+        print(code[:4])
 
-percentage = ('{0:.2f}%'.format(( calls_within_blr/calls_count  * 100)))
+percentage = ('{0:.2f}%'.format(( float(calls_within_blr)/float(all_calls)  * 100)))
 print(percentage," percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
 """
 TASK 3:
