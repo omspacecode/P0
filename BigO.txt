@@ -3,22 +3,24 @@ Worst Case Big-O Notation
 =============================================================================================
 Task0:
 Since this task involves picking up the first text record and last call record.
-It depends on the range of the list.  n log(n+r)
+>> O(1)
 =============================================================================================
 Task1:
 When the list range is huge in range, there might evidence of worst case scenario
+>> O(n)
 
 =============================================================================================
 Task2:
 When there are multiple numbers that have spent exact same duration on call.
 It will be worst case as to which records needs to picked up for the max duration
+>> O(n)
 =============================================================================================
 Task3:
 When the list contains data which consists of 080 with the braces, it will not be able to find a match and hence fall as the worst case.
-
+>> O(n)
 
 =============================================================================================
 Task4:
 
 If there are numbers that are telemarketers but start from number different from 140 will not be matched and falling in the worst case scenario.
-
+>> O(n)
