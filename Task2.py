@@ -12,15 +12,23 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
 
 max_time = 0
-max_time_record = []
+all_records = {}
 for call in calls:
-	if(int(call[3]) > max_time):
-		max_time = int(call[3])
-		max_time_record.clear()
-		max_time_record.append(call[0])
-		max_time_record.append(int(call[3]))
+    all_records[call[0]] = call[3]
+    all_records[call[1]] = call[3]
 
-print(max_time_record[0],"spent the longest time, ",max_time_record[1]," seconds, on the phone during September 2016")
+for call_rec in all_records:
+    for call in calls:
+        if call_rec == call[0]:
+            tmp = all_records[call_rec]
+            all_records[call_rec] = int(tmp) + int(call[3])
+        if call_rec == call[1]:
+            tmp = all_records[call_rec]
+            all_records[call_rec] = int(tmp) + int(call[3])
+
+
+maximum = max(all_records, key=all_records.get)
+print (maximum,"spent the longest time, ",all_records[maximum]," seconds, on the phone during September 2016")
 
 """
 TASK 2: Which telephone number spent the longest time on the phone
@@ -30,4 +38,3 @@ Print a message:
 "<telephone number> spent the longest time, <total time> seconds, on the phone during
 September 2016.".
 """
-
