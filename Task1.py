@@ -11,17 +11,16 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-tel_numbers = []
+tel_numbers = set()
 
 for text in texts:
-	tel_numbers.append(text[0])
-	tel_numbers.append(text[1])
+	tel_numbers.add(text[0])
+	tel_numbers.add(text[1])
 for call in calls:
-	tel_numbers.append(call[0])
-	tel_numbers.append(call[1])
+	tel_numbers.add(call[0])
+	tel_numbers.add(call[1])
 
-
-total_unique_tel_numbers = len(set(tel_numbers))
+total_unique_tel_numbers = len(tel_numbers)
 print("There are ",total_unique_tel_numbers ," different telephone numbers in the records.")
 
 """
