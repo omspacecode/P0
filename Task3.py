@@ -14,17 +14,23 @@ with open('calls.csv', 'r') as f:
     calls_count = len(calls)
 
 calls_within_blr = 0
+all_calls_blr = 0
 all_calls = 0
 list_of_codes = set();
 
 for call in calls:
     if call[0].find("(080)") != -1 and call[1].find("(080)") != -1:
+        list_of_codes.add(call[1])
         calls_within_blr += 1
+        all_calls_blr += 1
         all_calls += 1
     elif call[0].find("(080)") != -1 and call[1].find("(") != -1:
         list_of_codes.add(call[1])
+        all_calls_blr += 1
+        all_calls += 1
     elif call[0].find("(080)") != -1 and ( call[1][0] == "9" or call[1][0] == "8" or call[1][0] == "7" ):
         list_of_codes.add(call[1])
+        all_calls_blr += 1
         all_calls += 1
     else:
         all_calls += 1
@@ -37,7 +43,7 @@ for code in sorted(list_of_codes):
     else:
         print(code[:4])
 
-percentage = ('{0:.2f}%'.format(( float(calls_within_blr)/float(all_calls)  * 100)))
+percentage = ('{0:.2f}%'.format(( float(calls_within_blr)/float(all_calls_blr)  * 100)))
 print(percentage," percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
 """
 TASK 3:
