@@ -7,7 +7,7 @@ Since this task involves picking up the first text record and last call record.
 =============================================================================================
 Task1:
 When the list range is huge in range, there might evidence of worst case scenario
->> O(n)
+>> O(n2)
 
 =============================================================================================
 Task2:

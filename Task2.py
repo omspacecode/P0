@@ -14,8 +14,8 @@ with open('calls.csv', 'r') as f:
 max_time = 0
 all_records = {}
 for call in calls:
-    all_records[call[0]] = call[3]
-    all_records[call[1]] = call[3]
+    all_records[call[0]] = 0
+    all_records[call[1]] = 0
 
 for call_rec in all_records:
     for call in calls:
