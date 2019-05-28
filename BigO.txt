@@ -16,11 +16,11 @@ It will be worst case as to which records needs to picked up for the max duratio
 >> O(n)
 =============================================================================================
 Task3:
-When the list contains data which consists of 080 with the braces, it will not be able to find a match and hence fall as the worst case.
->> O(n)
+Since it will take linear time to fetch the data from lists and then we have performed sorting which will take O(nlogn).
+>> Total runtime complexity is O(nlogn).
 
 =============================================================================================
 Task4:
 
-If there are numbers that are telemarketers but start from number different from 140 will not be matched and falling in the worst case scenario.
->> O(n)
+Since it will take linear time to fetch the data from lists and then we have performed sorting which will take O(nlogn).
+>> Total runtime complexity is O(nlogn).
