@@ -35,13 +35,17 @@ for call in calls:
     else:
         all_calls += 1
 
+unique_codes = set();
 print("The numbers called by people in Bangalore have codes:")
 for code in sorted(list_of_codes):
     if(code.find(")") != -1):
         pos = code.find(")")
-        print(code[:pos+1])
+        unique_codes.add(code[:pos+1])
     else:
-        print(code[:4])
+        unique_codes.add(code[:4])
+
+for unique_code in sorted(unique_codes):
+    print(unique_code)
 
 percentage = ('{0:.2f}%'.format(( float(calls_within_blr)/float(all_calls_blr)  * 100)))
 print(percentage," percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.")
